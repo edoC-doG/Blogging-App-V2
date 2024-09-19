@@ -1,9 +1,7 @@
-POST http://localhost:3055/signup 
+POST http://localhost:3055/signin
 Content-Type: application/json
 
 {
-    "username":"Long",
-    "fullname": "Long Nguyen",
     "email": "Long123@gmail.com",
     "password": "Long12345"
 }
