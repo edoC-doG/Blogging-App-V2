@@ -1,6 +1,7 @@
 import { memo, useState } from 'react';
+import PropTypes from 'prop-types';
+
 const InputBox = (props) => {
-  // eslint-disable-next-line react/prop-types
   const { name, id, type, value, placeholder, icon } = props;
   const [pwdVisible, setPwdVisible] = useState(false);
   return (
@@ -31,4 +32,14 @@ const InputBox = (props) => {
     </div>
   );
 };
+
+InputBox.propTypes = {
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  placeholder: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+};
+
 export default memo(InputBox);
