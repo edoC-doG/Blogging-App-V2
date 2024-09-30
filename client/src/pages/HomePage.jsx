@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Loader from '@/components/Loader';
-import BlogPostCard from '@/components/BlogPostCard';
 import MinimalBlogPost from '@/components/manage-blogs/MinimalBlogPost';
 import { activeTabRef } from '@/components/InpageNavigation';
 import NoDataMessage from '@/components/NoDataMessage';
@@ -9,6 +8,7 @@ import { filterPaginationData } from '@/common/filter-pagination-data';
 import LoadMoreDataBtn from '@/components/LoadMoreDataBtn';
 import PageAnimation from '@/common/PageAnimation';
 import InpageNavigation from '@/components/InpageNavigation';
+import BlogPostCard from '@/components/manage-blogs/BlogPostCard';
 
 const HomePage = () => {
   let [blogs, setBlog] = useState(null);

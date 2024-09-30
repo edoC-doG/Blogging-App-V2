@@ -3,7 +3,7 @@ import InpageNavigation from '../components/InpageNavigation';
 import { useEffect, useState } from 'react';
 import Loader from '../components/Loader';
 import PageAnimation from '../common/PageAnimation';
-import BlogPostCard from '../components/BlogPostCard';
+import BlogPostCard from '../components/manage-blogs/BlogPostCard';
 import NoDataMessage from '../components/NoDataMessage';
 import LoadMoreDataBtn from '../components/LoadMoreDataBtn';
 import axios from 'axios';

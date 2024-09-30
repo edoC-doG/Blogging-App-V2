@@ -30,7 +30,7 @@ const Navbar = () => {
     if (access_token) {
       axios
         .get(
-          import.meta.env.VITE_SERVER_DOMAIN + '/new-notification',
+          import.meta.env.VITE_SERVER_DOMAIN + 'new-notification',
           {
             headers: {
               Authorization: `Bearer ${access_token}`,

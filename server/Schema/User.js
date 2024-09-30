@@ -81,6 +81,16 @@ const userSchema = mongoose.Schema({
             default: "",
         }
     },
+    account_info: {
+        total_posts: {
+            type: Number,
+            default: 0
+        },
+        total_reads: {
+            type: Number,
+            default: 0
+        },
+    },
     google_auth: {
         type: Boolean,
         default: false

@@ -10,6 +10,9 @@ import Editor from './pages/Editor';
 import SideNav from './components/SideNav';
 import ManageBlogs from './components/manage-blogs/ManageBlogs';
 import Notifications from './components/notification/Notifications';
+// import EditProfile from './pages/EditProfile';
+import ChangePassword from './pages/ChangePwd';
+import ProfilePage from './pages/ProfilePage';
 export const UserContext = createContext({});
 export const ThemeContext = createContext({});
 const darkThemePreference = () =>
@@ -57,11 +60,11 @@ const App = () => {
               />
             </Route>
             <Route path="settings" element={<SideNav />}>
-              {/* <Route path="edit-profile" element={<EditProfile />} />
+              {/* <Route path="edit-profile" element={<EditProfile />} /> */}
               <Route
                 path="change-password"
                 element={<ChangePassword />}
-              /> */}
+              />
             </Route>
             <Route
               path="signin"
@@ -72,8 +75,8 @@ const App = () => {
               element={<UserAuthForm type="sign-up" />}
             />
             <Route path="search/:query" element={<SearchPage />} />
-            {/* <Route path="user/:id" element={<ProfilePage />} />
-            <Route path="blog/:blog_id" element={<BlogPage />} /> */}
+            <Route path="user/:id" element={<ProfilePage />} />
+            {/* <Route path="blog/:blog_id" element={<BlogPage />} /> */}
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
