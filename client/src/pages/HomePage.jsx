@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import Loader from '../components/Loader';
-import BlogPostCard from '../components/BlogPostCard';
-import MinimalBlogPost from '../components/MinimalBlogPost';
-import { activeTabRef } from '../components/InpageNavigation';
-import NoDataMessage from '../components/NoDataMessage';
-import { filterPaginationData } from '../common/filter-pagination-data';
-import LoadMoreDataBtn from '../components/LoadMoreDataBtn';
-import PageAnimation from '../common/PageAnimation';
-import InpageNavigation from '../components/InpageNavigation';
+import Loader from '@/components/Loader';
+import BlogPostCard from '@/components/BlogPostCard';
+import MinimalBlogPost from '@/components/MinimalBlogPost';
+import { activeTabRef } from '@/components/InpageNavigation';
+import NoDataMessage from '@/components/NoDataMessage';
+import { filterPaginationData } from '@/common/filter-pagination-data';
+import LoadMoreDataBtn from '@/components/LoadMoreDataBtn';
+import PageAnimation from '@/common/PageAnimation';
+import InpageNavigation from '@/components/InpageNavigation';
 
 const HomePage = () => {
   let [blogs, setBlog] = useState(null);
@@ -28,7 +28,7 @@ const HomePage = () => {
 
   const fetchLatestBlogs = ({ page = 1 }) => {
     axios
-      .post(import.meta.env.VITE_SERVER_DOMAIN + '/latest-blogs', {
+      .post(import.meta.env.VITE_SERVER_DOMAIN + 'latest-blogs', {
         page,
       })
       .then(async ({ data }) => {
@@ -36,7 +36,7 @@ const HomePage = () => {
           state: blogs,
           data: data.blogs,
           page,
-          countRoute: '/all-latest-blogs-count',
+          countRoute: 'all-latest-blogs-count',
         });
 
         setBlog(formatedData);
@@ -48,7 +48,7 @@ const HomePage = () => {
 
   const fetchBlogsByCategory = ({ page = 1 }) => {
     axios
-      .post(import.meta.env.VITE_SERVER_DOMAIN + '/search-blogs', {
+      .post(import.meta.env.VITE_SERVER_DOMAIN + 'search-blogs', {
         tag: pageState,
         page,
       })
@@ -57,7 +57,7 @@ const HomePage = () => {
           state: blogs,
           data: data.blogs,
           page,
-          countRoute: '/search-blogs-count',
+          countRoute: 'search-blogs-count',
           data_to_send: { tag: pageState },
         });
 
@@ -70,7 +70,7 @@ const HomePage = () => {
 
   const fetchTrendingBlogs = () => {
     axios
-      .get(import.meta.env.VITE_SERVER_DOMAIN + '/trending-blogs')
+      .get(import.meta.env.VITE_SERVER_DOMAIN + 'trending-blogs')
       .then(({ data }) => {
         setTrendingBlog(data.blogs);
       })
