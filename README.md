@@ -12,7 +12,7 @@
     <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logoColor=white&logo=tailwindcss&color=06B6D4" alt="tailwindcss" />
   </div>
 
-  <h3 align="center">Iphone 15 Website</h3>
+  <h3 align="center">Blog App</h3>
 
 </div>
 
@@ -31,23 +31,26 @@ This is a clone of Apple's iPhone 15 Pro website using React.js and TailwindCSS.
 If you're getting started and need assistance or face any bugs, join our active Discord community with over 27k+ members. It's a place where people help each other out.
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 - React.js
-- Three.js
-- React Three Fiber
-- React Three Drei
-- GSAP (Greensock)
 - Vite
 - Tailwind CSS
+- Redux, Redux Persist, Redux ToolKit
+- AWS S3
+- Google Auth, JWT
 ## <a name="features">🔋 Features</a>
 
-👉 **Beautiful Subtle Smooth Animations using GSAP**: Enhanced user experience with seamless and captivating animations powered by GSAP.
+👉 **State Management with Redux Toolkit and Persist**: Efficient state management with Redux Toolkit, ensuring seamless synchronization of blog data such as blog_id, user_id, title, and description, while Redux Persist maintains the state even after page reloads.
 
-👉 **3D Model Rendering with Different Colors and Sizes**: Explore the iPhone 15 Pro from every angle with dynamic 3D rendering, offering various color and size options.
+👉 **Fast and Efficient Development with Vite**: Leveraging Vite for its lightning-fast build and hot-reload capabilities, improving development speed and enhancing the developer experience.
 
-👉 **Custom Video Carousel (made with GSAP)**: Engage users with a unique and interactive video carousel developed using GSAP for a personalized browsing experience.
+👉 **Modern UI with Tailwind CSS**: Create visually appealing and responsive layouts effortlessly using the utility-first approach of Tailwind CSS, ensuring consistency across various devices and screen sizes.
 
-👉 **Completely Responsive**: Consistent access and optimal viewing on any device with a fully responsive design that adapts to different screen sizes.
+👉 **Secure User Authentication with Google Auth and JWT**: Provide users with secure login functionality using Google Authentication, while JSON Web Tokens (JWT) ensure secure session management and API interaction.
 
-and many more, including code architecture and reusability 
+👉 **Blog Storage and Management with AWS S3**: Easily upload and manage blog images and other media with AWS S3, enabling scalable and secure storage solutions.
+
+👉 **Fully Responsive Design**: Ensure that the blog app provides an optimal viewing experience across different devices, thanks to the responsive design powered by Tailwind CSS.
+
+👉 **Code Architecture and Reusability**: Maintain clean, modular, and reusable code architecture to ensure scalability and ease of maintenance for future enhancements.
 
 ## <a name="quick-start">🤸 Quick Start</a>
 
