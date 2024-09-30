@@ -1,20 +1,25 @@
-import { Link, Outlet, useNavigate } from 'react-router-dom';
-import logo from '../img/logo.jpg';
-import { UserContext } from '../App';
 import { useContext, useEffect, useState } from 'react';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import darkLogo from '@/img/aws-dark.png';
+import lightLogo from '@/img/aws-light.svg';
+import { ThemeContext, UserContext } from '@/App';
 import axios from 'axios';
-import UserNavigationPanel from './UserNavigationPanel';
+import { storeInSession } from '@/common/session';
 
 const Navbar = () => {
-  const [searchBox, setSearchBox] = useState(false);
-  const [userNavPanel, setUserNavPanel] = useState(false);
+  const [searchBoxVisibility, setSearchBoxVisibility] =
+    useState(false);
+  // const [userNavPanel, setUserNavPanel] = useState(false);
+
+  let { theme, setTheme } = useContext(ThemeContext);
+
   let navigate = useNavigate();
 
   const {
     userAuth,
     userAuth: {
       access_token,
-      profile_img,
+      // profile_img,
       new_notification_available,
     },
     setUserAuth,
@@ -24,7 +29,7 @@ const Navbar = () => {
     if (access_token) {
       axios
         .get(
-          import.meta.env.VITE_SERVER_DOMAIN + 'new-notification',
+          import.meta.env.VITE_SERVER_DOMAIN + '/new-notification',
           {
             headers: {
               Authorization: `Bearer ${access_token}`,
@@ -40,9 +45,9 @@ const Navbar = () => {
     }
   }, [access_token]);
 
-  const handleUserNavPanel = () => {
-    setUserNavPanel((currentVal) => !currentVal);
-  };
+  // const handleUserNavPanel = () => {
+  //   setUserNavPanel((currentVal) => !currentVal);
+  // };
 
   const handleSearch = (e) => {
     let query = e.target.value;
@@ -52,23 +57,36 @@ const Navbar = () => {
     }
   };
 
-  const handleBlur = () => {
-    setTimeout(() => {
-      setUserNavPanel(false);
-    }, 200);
+  // const handleBlur = () => {
+  //   setTimeout(() => {
+  //     setUserNavPanel(false);
+  //   }, 200);
+  // };
+
+  const changeTheme = () => {
+    let newTheme = theme == 'light' ? 'dark' : 'light';
+
+    setTheme(newTheme);
+
+    document.body.setAttribute('data-theme', newTheme);
+
+    storeInSession('theme', newTheme);
   };
 
   return (
     <>
       <nav className="navbar z-50">
         <Link to="/" className="flex-none w-10">
-          <img src={logo} className="w-full" />
+          <img
+            src={theme == 'light' ? darkLogo : lightLogo}
+            className="w-full"
+          />
         </Link>
 
         <div
           className={
             'absolute bg-white w-full left-0 top-full mt-0.5 border-b border-grey py-4 px-[5vw] md:border-0 md:block md:relative md:inset-0 md:p-0 md:w-auto md:show ' +
-            (searchBox ? 'show' : 'hide')
+            (searchBoxVisibility ? 'show' : 'hide')
           }
         >
           <input
@@ -84,7 +102,9 @@ const Navbar = () => {
         <div className="flex items-center gap-3 md:gap-6 ml-auto">
           <button
             className="md:hidden bg-grey w-12 h-12 rounded-full flex items-center justify-center"
-            onClick={() => setSearchBox((currentVal) => !currentVal)}
+            onClick={() =>
+              setSearchBoxVisibility((currentVal) => !currentVal)
+            }
           >
             <i className="fi fi-rr-search text-xl"></i>
           </button>
@@ -93,6 +113,19 @@ const Navbar = () => {
             <i className="fi fi-rr-file-edit"></i>
             <p>Write</p>
           </Link>
+
+          <button
+            className="w-12 h-12 rounded-full bg-grey relative hover:bg-black/10"
+            onClick={changeTheme}
+          >
+            <i
+              className={
+                'fi fi-rr-' +
+                (theme == 'light' ? 'moon-stars' : 'sun') +
+                ' text-2xl block mt-1'
+              }
+            ></i>
+          </button>
 
           {access_token ? (
             <>
@@ -107,7 +140,7 @@ const Navbar = () => {
                 </button>
               </Link>
 
-              <div
+              {/* <div
                 className="relative"
                 onClick={handleUserNavPanel}
                 onBlur={handleBlur}
@@ -120,7 +153,7 @@ const Navbar = () => {
                 </button>
 
                 {userNavPanel ? <UserNavigationPanel /> : ''}
-              </div>
+              </div> */}
             </>
           ) : (
             <>
@@ -137,6 +170,7 @@ const Navbar = () => {
           )}
         </div>
       </nav>
+
       <Outlet />
     </>
   );

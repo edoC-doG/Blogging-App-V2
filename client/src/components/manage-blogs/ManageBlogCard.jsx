@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
-import { getDay } from '../common/date';
+import { getDay } from '@/common/date';
 import { useContext, useState } from 'react';
-import { UserContext } from '../App';
+import { UserContext } from '@/App';
 import axios from 'axios';
 
 const BlogStats = ({ stats }) => {

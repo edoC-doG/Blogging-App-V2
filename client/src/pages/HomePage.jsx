@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Loader from '@/components/Loader';
 import BlogPostCard from '@/components/BlogPostCard';
-import MinimalBlogPost from '@/components/MinimalBlogPost';
+import MinimalBlogPost from '@/components/manage-blogs/MinimalBlogPost';
 import { activeTabRef } from '@/components/InpageNavigation';
 import NoDataMessage from '@/components/NoDataMessage';
 import { filterPaginationData } from '@/common/filter-pagination-data';
