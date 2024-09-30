@@ -5,11 +5,12 @@ import lightLogo from '@/img/aws-light.svg';
 import { ThemeContext, UserContext } from '@/App';
 import axios from 'axios';
 import { storeInSession } from '@/common/session';
+import UserNavigationPanel from './UserNavigationPanel';
 
 const Navbar = () => {
   const [searchBoxVisibility, setSearchBoxVisibility] =
     useState(false);
-  // const [userNavPanel, setUserNavPanel] = useState(false);
+  const [userNavPanel, setUserNavPanel] = useState(false);
 
   let { theme, setTheme } = useContext(ThemeContext);
 
@@ -19,7 +20,7 @@ const Navbar = () => {
     userAuth,
     userAuth: {
       access_token,
-      // profile_img,
+      profile_img,
       new_notification_available,
     },
     setUserAuth,
@@ -45,9 +46,9 @@ const Navbar = () => {
     }
   }, [access_token]);
 
-  // const handleUserNavPanel = () => {
-  //   setUserNavPanel((currentVal) => !currentVal);
-  // };
+  const handleUserNavPanel = () => {
+    setUserNavPanel((currentVal) => !currentVal);
+  };
 
   const handleSearch = (e) => {
     let query = e.target.value;
@@ -57,11 +58,11 @@ const Navbar = () => {
     }
   };
 
-  // const handleBlur = () => {
-  //   setTimeout(() => {
-  //     setUserNavPanel(false);
-  //   }, 200);
-  // };
+  const handleBlur = () => {
+    setTimeout(() => {
+      setUserNavPanel(false);
+    }, 200);
+  };
 
   const changeTheme = () => {
     let newTheme = theme == 'light' ? 'dark' : 'light';
@@ -140,7 +141,7 @@ const Navbar = () => {
                 </button>
               </Link>
 
-              {/* <div
+              <div
                 className="relative"
                 onClick={handleUserNavPanel}
                 onBlur={handleBlur}
@@ -153,7 +154,7 @@ const Navbar = () => {
                 </button>
 
                 {userNavPanel ? <UserNavigationPanel /> : ''}
-              </div> */}
+              </div>
             </>
           ) : (
             <>

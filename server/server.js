@@ -5,9 +5,9 @@ import bcrypt from "bcrypt"
 import jwt from 'jsonwebtoken'
 import cors from 'cors';
 import { nanoid } from 'nanoid';
-// import aws from "aws-sdk";
+import aws from "aws-sdk";
 
-//Chema
+//SChema
 import User from './Schema/User.js';
 import Blog from './Schema/Blog.js';
 import Comment from "./Schema/Comment.js";
@@ -25,32 +25,32 @@ mongoose.connect(process.env.DB_LOCATION, {
     autoIndex: true
 });
 
-// const s3 = new aws.S3({
-//     region: process.env.AWS_BUCKET_REGION,
-//     accessKeyId: process.env.AWS_ACCESS_KEY,
-//     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-// })
+const s3 = new aws.S3({
+    region: process.env.AWS_BUCKET_REGION,
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+})
 
-// const generateUploadURL = async () => {
+const generateUploadURL = async () => {
 
-//     const date = new Date();
-//     const imageName = `${nanoid()}-${date.getTime()}.jpeg`;
+    const date = new Date();
+    const imageName = `${nanoid()}-${date.getTime()}.jpeg`;
 
-//     return await s3.getSignedUrlPromise('putObject', {
-//         Bucket: process.env.AWS_BUCKET_NAME,
-//         Key: imageName,
-//         Expires: 1000,
-//         ContentType: "image/jpeg"
-//     })
+    return await s3.getSignedUrlPromise('putObject', {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: imageName,
+        Expires: 1000,
+        ContentType: "image/jpeg"
+    })
 
-// }
-// server.get('/get-upload-url', (req, res) => {
-//     generateUploadURL().then(url => res.status(200).json({ uploadURL: url }))
-//         .catch(err => {
-//             console.log(err.message);
-//             return res.status(500).json({ error: err.message })
-//         })
-// })
+}
+server.get('/get-upload-url', (req, res) => {
+    generateUploadURL().then(url => res.status(200).json({ uploadURL: url }))
+        .catch(err => {
+            console.log(err.message);
+            return res.status(500).json({ error: err.message })
+        })
+})
 
 const verifyJWT = (req, res, next) => {
     const authHeader = req.headers['authorization'];

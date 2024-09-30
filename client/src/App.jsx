@@ -9,6 +9,7 @@ import PageNotFound from './pages/404.page';
 import Editor from './pages/Editor';
 import SideNav from './components/SideNav';
 import ManageBlogs from './components/manage-blogs/ManageBlogs';
+import Notifications from './components/notification/Notifications';
 export const UserContext = createContext({});
 export const ThemeContext = createContext({});
 const darkThemePreference = () =>
@@ -50,10 +51,10 @@ const App = () => {
             <Route index element={<HomePage />} />
             <Route path="dashboard" element={<SideNav />}>
               <Route path="blogs" element={<ManageBlogs />} />
-              {/* <Route
+              <Route
                 path="notifications"
                 element={<Notifications />}
-              /> */}
+              />
             </Route>
             <Route path="settings" element={<SideNav />}>
               {/* <Route path="edit-profile" element={<EditProfile />} />

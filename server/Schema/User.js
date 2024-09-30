@@ -55,6 +55,36 @@ const userSchema = mongoose.Schema({
             bs: { type: String, default: "" }
         }
     },
+    social_links: {
+        youtube: {
+            type: String,
+            default: "",
+        },
+        instagram: {
+            type: String,
+            default: "",
+        },
+        facebook: {
+            type: String,
+            default: "",
+        },
+        twitter: {
+            type: String,
+            default: "",
+        },
+        github: {
+            type: String,
+            default: "",
+        },
+        website: {
+            type: String,
+            default: "",
+        }
+    },
+    google_auth: {
+        type: Boolean,
+        default: false
+    },
     blogs: {
         type: [Schema.Types.ObjectId],
         ref: 'blogs',
