@@ -13,6 +13,7 @@ import Notifications from './components/notification/Notifications';
 // import EditProfile from './pages/EditProfile';
 import ChangePassword from './pages/ChangePwd';
 import ProfilePage from './pages/ProfilePage';
+import BlogPage from './pages/BlogPage';
 export const UserContext = createContext({});
 export const ThemeContext = createContext({});
 const darkThemePreference = () =>
@@ -76,7 +77,7 @@ const App = () => {
             />
             <Route path="search/:query" element={<SearchPage />} />
             <Route path="user/:id" element={<ProfilePage />} />
-            {/* <Route path="blog/:blog_id" element={<BlogPage />} /> */}
+            <Route path="blog/:blog_id" element={<BlogPage />} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>

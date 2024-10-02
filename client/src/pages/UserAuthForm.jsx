@@ -6,8 +6,9 @@ import { Toaster, toast } from 'react-hot-toast';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
-import { UserContext } from '../App';
-import { storeInSession } from '../common/session';
+import { UserContext } from '@/App';
+import { storeInSession } from '@/common/session';
+import { authWithGoogle } from '@/common/firebase';
 
 const UserAuthForm = ({ type }) => {
   let {
@@ -31,6 +32,24 @@ const UserAuthForm = ({ type }) => {
       });
   };
 
+  const handleGoogleAuth = (e) => {
+    e.preventDefault();
+
+    authWithGoogle()
+      .then((user) => {
+        let serverRoute = 'google-auth';
+
+        let formData = {
+          access_token: user.accessToken,
+        };
+
+        userAuthThroughServer(serverRoute, formData);
+      })
+      .catch((err) => {
+        toast.error('trouble login through google');
+        return console.log(err);
+      });
+  };
   const handleSubmit = (e) => {
     // eslint-disable-next-line no-useless-escape
     let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // regex for email
@@ -124,7 +143,7 @@ const UserAuthForm = ({ type }) => {
 
           <button
             className="btn-dark flex items-center justify-center gap-4 w-[90%] center"
-            // onClick={handleGoogleAuth}
+            onClick={handleGoogleAuth}
           >
             <img src={googleIcon} className="w-5" />
             continue with google

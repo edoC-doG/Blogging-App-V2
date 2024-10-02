@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .env
+.reactjs-blog-longnmse-firebase-adminsdk-4sg90-a3a2a55b62
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
