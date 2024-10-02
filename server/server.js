@@ -9,7 +9,7 @@ import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { nanoid } from 'nanoid';
 import admin from "firebase-admin";
 import { getAuth } from "firebase-admin/auth";
-import serviceAccountKey from "./reactjs-blog-longnmse-firebase-adminsdk-4sg90-a3a2a55b62.json" assert { type: "json" }
+import serviceAccountKey from "./json.json" assert { type: "json" }
 //SChema
 import User from './Schema/User.js';
 import Blog from './Schema/Blog.js';
