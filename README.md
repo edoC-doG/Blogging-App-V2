@@ -1,7 +1,7 @@
 <div align="center">
   <br />
     <a href="https://youtu.be/kRQbRAJ4-Fs" target="_blank">
-      <img src="[https://i.postimg.cc/37PnQw8n/Image-from.png](https://res.cloudinary.com/dharyanjc/image/upload/v1728016890/blog_menu_ufkrpm.png)" alt="Project Banner">
+      <img src="https://res.cloudinary.com/dharyanjc/image/upload/v1728016890/blog_menu_ufkrpm.png" alt="Project Banner">
     </a>
   <br />
 
