@@ -3,33 +3,47 @@ import InputBox from '@/components/InputBox';
 import googleIcon from '@/img/google.png';
 import { Link, Navigate } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
-import axios from 'axios';
+// import axios from 'axios';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { UserContext } from '@/App';
-import { storeInSession } from '@/common/session';
+// import { storeInSession } from '@/common/session';
 import { authWithGoogle } from '@/common/firebase';
+import { useDispatch, useSelector } from 'react-redux';
+import { apiLogin } from '@/apis/user';
+import { signin } from '@/store/user/userSlice';
 
 const UserAuthForm = ({ type }) => {
+  const dispatch = useDispatch();
   let {
     userAuth: { access_token },
     setUserAuth,
   } = useContext(UserContext);
 
-  const userAuthThroughServer = (serverRoute, formData) => {
-    axios
-      .post(
-        import.meta.env.VITE_SERVER_DOMAIN + serverRoute,
-        formData
-      )
-      .then(({ data }) => {
-        storeInSession('user', JSON.stringify(data));
+  const userAuthThroughServer = async (serverRoute, formData) => {
+    const rs = await apiLogin(formData);
+    if (rs.access_token) {
+      dispatch(
+        signin({
+          isLoggedIn: true,
+          current: rs,
+          token: rs.access_token,
+        })
+      );
+    } else toast.error('Sign In Failed');
+    // axios
+    //   .post(
+    //     import.meta.env.VITE_SERVER_DOMAIN + serverRoute,
+    //     formData
+    //   )
+    //   .then(({ data }) => {
+    //     storeInSession('user', JSON.stringify(data));
 
-        setUserAuth(data);
-      })
-      .catch(({ response }) => {
-        toast.error(response.data.error);
-      });
+    //     setUserAuth(data);
+    //   })
+    //   .catch(({ response }) => {
+    //     toast.error(response.data.error);
+    //   });
   };
 
   const handleGoogleAuth = (e) => {
@@ -90,7 +104,8 @@ const UserAuthForm = ({ type }) => {
     }
     userAuthThroughServer(serverRoute, formData);
   };
-
+  const { isLoggedIn, current } = useSelector((state) => state.user);
+  console.log(current);
   return access_token ? (
     <Navigate to="/" />
   ) : (
@@ -174,6 +189,9 @@ const UserAuthForm = ({ type }) => {
       </section>
     </PageAnimation>
   );
+  // return( (current || isLoggedIn ) {
+  //   <Navigate to="/"/>
+  // })
 };
 UserAuthForm.propTypes = {
   type: PropTypes.string.isRequired,

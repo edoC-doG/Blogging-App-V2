@@ -10,11 +10,16 @@ export const userSlice = createSlice({
         mes: '',
     },
     reducers: {
-        register: (state, action) => {
+        signin: (state, action) => {
+            state.isLoggedIn = action.payload.isLoggedIn;
+            state.token = action.payload.token;
+            state.current = action.payload.current;
+        },
+        signup: (state, action) => {
             state.isLoggedIn = action.payload.isLoggedIn;
             state.token = action.payload.token;
         },
-        logout: (state) => {
+        signout: (state) => {
             state.isLoggedIn = false;
             state.token = null;
             state.current = null;
@@ -41,6 +46,6 @@ export const userSlice = createSlice({
     }
 });
 
-export const { register, logout, clearMessage } = userSlice.actions;
+export const { signin, signout, clearMessage, signup } = userSlice.actions;
 
 export default userSlice.reducer;

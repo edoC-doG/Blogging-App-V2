@@ -10,7 +10,7 @@ import Editor from './pages/Editor';
 import SideNav from './components/SideNav';
 import ManageBlogs from './components/manage-blogs/ManageBlogs';
 import Notifications from './components/notification/Notifications';
-// import EditProfile from './pages/EditProfile';
+import EditProfile from './pages/EditProfile';
 import ChangePassword from './pages/ChangePwd';
 import ProfilePage from './pages/ProfilePage';
 import BlogPage from './pages/BlogPage';
@@ -61,7 +61,7 @@ const App = () => {
               />
             </Route>
             <Route path="settings" element={<SideNav />}>
-              {/* <Route path="edit-profile" element={<EditProfile />} /> */}
+              <Route path="edit-profile" element={<EditProfile />} />
               <Route
                 path="change-password"
                 element={<ChangePassword />}

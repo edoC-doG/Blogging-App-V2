@@ -1,16 +1,24 @@
 POST http://localhost:3055/create-blog
 Content-Type: application/json
-Authorization: Bearer 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZmVjOTA3MzM3OTdkYjFkZGQ5ZjE5NyIsImlhdCI6MTcyNzk3MzY0MH0.jDDAx8XKZebBFOXX_M8Qg0UWIOmyXktBzgt5WQa9O84 
 # {
 #     "email": "Long123@gmail.com",
 #     "password": "Long12345"
 # }
 
 {
-    "title":"Test title 11",
+    "title":"Test title 02",
     "des":"this is test title",
     "content": {
         "blocks": [1,2]
     },
     "tags": ["film making", "social media"]
 }
+
+
+# {
+#     "fullname":"Nguyen Minh Long",
+#     "email":"long@gmail.com",
+#     "password":"Long@123",
+#     "username": "Long"
+# }

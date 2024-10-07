@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { getDay } from '@/common/date';
 import { Link } from 'react-router-dom';
+import { img } from '@/common/randomImg';
 const BlogPostCard = ({ content, author }) => {
   let {
     publishedAt,
@@ -10,7 +11,10 @@ const BlogPostCard = ({ content, author }) => {
     activity: { total_likes },
     blog_id: id,
   } = content;
-  let { fullname, profile_img, username } = author;
+  // let { fullname, profile_img, username } = author;
+  let fullname = author?.fullname || 'Anonymous';
+  let profile_img = author?.profile_img || img;
+  let username = author?.username || 'Unknown';
 
   return (
     <Link

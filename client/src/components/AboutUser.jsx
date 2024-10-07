@@ -1,12 +1,11 @@
-/* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
-import { getFullDay } from '../common/date';
-
+import { getFullDay } from '@/common/date';
+import PropTypes from 'prop-types';
 const AboutUser = ({ className, bio, social_links, joinedAt }) => {
   return (
     <div className={'md:w-[90%] md:mt-7 ' + className}>
       <p className="text-xl leading-7">
-        {bio.length ? bio : 'Nothing to read here'}
+        {bio?.length ? bio : 'Nothing to read here'}
       </p>
 
       <div className="flex gap-x-7 gap-y-2 flex-wrap my-7 items-center text-dark-grey">
@@ -39,3 +38,9 @@ const AboutUser = ({ className, bio, social_links, joinedAt }) => {
 };
 
 export default AboutUser;
+AboutUser.propTypes = {
+  bio: PropTypes.string,
+  className: PropTypes.string,
+  social_links: PropTypes.object,
+  joinedAt: PropTypes.string,
+};

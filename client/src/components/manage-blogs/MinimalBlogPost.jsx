@@ -1,16 +1,18 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { getDay } from '../../common/date';
+import { getDay } from '@/common/date';
+import { img } from '@/common/randomImg';
 
 const MinimalBlogPost = ({ blog, index }) => {
-  let {
-    title,
-    blog_id: id,
-    author: {
-      personal_info: { fullname, username, profile_img },
-    },
-    publishedAt,
-  } = blog;
+  let { title, blog_id: id, author, publishedAt } = blog;
+
+  // Safely extract personal_info only if author exists
+  const personal_info = author?.personal_info || {};
+  const {
+    fullname = 'Anonymous',
+    username = 'Unknown',
+    profile_img = img,
+  } = personal_info;
 
   return (
     <Link to={`/blog/${id}`} className="flex gap-5 mb-8">
@@ -32,5 +34,13 @@ const MinimalBlogPost = ({ blog, index }) => {
     </Link>
   );
 };
-
+MinimalBlogPost.propTypes = {
+  title: PropTypes.string,
+  blog_id: PropTypes.string,
+  author: PropTypes.object,
+  personal_info: PropTypes.object,
+  publishedAt: PropTypes.string,
+  blog: PropTypes.object,
+  index: PropTypes.number,
+};
 export default MinimalBlogPost;

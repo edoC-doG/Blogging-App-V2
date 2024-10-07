@@ -130,7 +130,7 @@ const HomePage = () => {
                     >
                       <BlogPostCard
                         content={blog}
-                        author={blog.author.personal_info}
+                        author={blog?.author?.personal_info}
                       />
                     </PageAnimation>
                   );
